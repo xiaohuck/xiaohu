@@ -103,4 +103,8 @@
             #{id}
         </foreach>
     </delete>
+
+    <select id="findById" resultType="com.bai.xiaohu.pojo.Product" parameterType="java.lang.String">
+        select * from product where id = #{id}
+    </select>
 </mapper>

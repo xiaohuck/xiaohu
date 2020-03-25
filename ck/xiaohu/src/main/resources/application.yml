@@ -20,6 +20,19 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.bai.xiaohu.pojo
 
+#分页插件
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  pageSizeZero: true
+  params: count=countSql
+
+#默认显示条数
+constants:
+  default:
+    pageSize: 10
+
 # LOG4J配置
 logging:
   level:

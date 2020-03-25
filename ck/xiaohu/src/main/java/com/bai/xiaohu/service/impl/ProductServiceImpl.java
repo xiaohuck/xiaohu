@@ -3,6 +3,8 @@ package com.bai.xiaohu.service.impl;
 import com.bai.xiaohu.dao.ProductMapper;
 import com.bai.xiaohu.pojo.Product;
 import com.bai.xiaohu.service.ProductService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +15,12 @@ import java.util.UUID;
 public class ProductServiceImpl  implements ProductService {
     @Autowired
     private ProductMapper productMapper;
+
     @Override
-    public List<Product> findAll() {
-
-        return productMapper.findAll();
-
+    public PageInfo<Product> findAll(Integer page, Integer size) {
+        PageHelper.startPage(page,size);
+        List<Product> productList = productMapper.findAll();
+        return new PageInfo<Product> (productList);
     }
 
     @Override
