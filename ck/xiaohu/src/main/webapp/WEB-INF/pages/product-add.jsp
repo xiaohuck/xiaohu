@@ -102,12 +102,12 @@
 						<div class="col-md-2 title">产品编号</div>
 						<div class="col-md-4 data">
 							<input type="text" class="form-control" name="productNum"
-								placeholder="产品编号" value="" autocomplete="off">
+								placeholder="产品编号" value="${product.productNum}" autocomplete="off">
 						</div>
 						<div class="col-md-2 title">产品名称</div>
 						<div class="col-md-4 data">
 							<input type="text" class="form-control" name="productName"
-								placeholder="产品名称" value="" autocomplete="off">
+								placeholder="产品名称" value="${product.productName}" autocomplete="off">
 						</div>
 						<div class="col-md-2 title">出发时间</div>
 						<div class="col-md-4 data">
@@ -116,7 +116,7 @@
 									<i class="fa fa-calendar"></i>
 								</div>
 								<input type="text" class="form-control pull-right"
-									id="datepicker-a3" name="departureTime" autocomplete="off">
+									id="datepicker-a3" name="departureTime" value="${product.departureTimeStr}" autocomplete="off">
 							</div>
 						</div>
 
@@ -124,13 +124,13 @@
 						<div class="col-md-2 title">出发城市</div>
 						<div class="col-md-4 data">
 							<input type="text" class="form-control" name="cityName" autocomplete="off"
-								placeholder="出发城市" value="">
+								placeholder="出发城市" value="${product.cityName}">
 						</div>
 
 						<div class="col-md-2 title">产品价格</div>
 						<div class="col-md-4 data">
 							<input type="text" class="form-control" placeholder="产品价格"
-								name="productPrice" value="" autocomplete="off">
+								name="productPrice" value="${product.productPrice}" autocomplete="off">
 						</div>
 
 						<div class="col-md-2 title">产品状态</div>
@@ -145,7 +145,7 @@
 						<div class="col-md-2 title rowHeight2x">其他信息</div>
 						<div class="col-md-10 data rowHeight2x">
 							<textarea class="form-control" rows="3" placeholder="其他信息"
-								name="productDesc"></textarea>
+								name="productDesc" value="${product.productDesc}"></textarea>
 						</div>
 
 					</div>

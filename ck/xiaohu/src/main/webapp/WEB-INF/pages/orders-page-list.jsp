@@ -254,7 +254,7 @@
 											<td class="text-center">${orders.orderStatusStr }</td>
 											<td class="text-center">
 												<button type="button" class="btn bg-olive btn-xs">订单</button>
-												<button type="button" class="btn bg-olive btn-xs" onclick="location.href='${pageContext.request.contextPath}/orders/findById.do?id=${orders.id}'">详情</button>
+												<button type="button" class="btn bg-olive btn-xs" onclick="location.href='${pageContext.request.contextPath}/Orders/findById.do?id=${orders.id}'">详情</button>
 												<button type="button" class="btn bg-olive btn-xs">编辑</button>
 											</td>
 										</tr>
@@ -463,7 +463,7 @@
 			var pageSize = $("#changePageSize").val();
 
 			//向服务器发送请求，改变没页显示条数
-			location.href = "${pageContext.request.contextPath}/orders/findAll.do?page=1&size="
+			location.href = "${pageContext.request.contextPath}/Orders/findAll.do?page=1&size="
 					+ pageSize;
 		}
 		$(document).ready(function() {
