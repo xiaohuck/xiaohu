@@ -1,6 +1,7 @@
 package com.bai.xiaohu.controller;
 import com.bai.xiaohu.pojo.User;
 import com.bai.xiaohu.service.UserService;
+import com.bai.xiaohu.utlis.MD5Utils;
 import com.beust.jcommander.Parameter;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,13 +39,20 @@ public class UserController {
 
     @RequestMapping("/add")
     public String add(User user){
+        user.setPassword(MD5Utils.string2MD5(user.getPassword()));
         userService.add(user);
         return "redirect:findAll";
     }
 
     @RequestMapping("/edit")
     public String edit(User user){
-        userService.edit(user);
+        User usr = userService.findById(user.getId());
+        if(user.getPassword().equals(usr.getPassword())){
+            userService.edit(user);
+        }else{
+            user.setPassword(MD5Utils.string2MD5(user.getPassword()));
+            userService.edit(user);
+        }
         return "redirect:findAll";
     }
 
