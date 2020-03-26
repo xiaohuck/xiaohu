@@ -1,10 +1,15 @@
 package com.bai.xiaohu.service.impl;
 
+import com.bai.xiaohu.dao.UserMapper;
 import com.bai.xiaohu.pojo.User;
 import com.bai.xiaohu.service.UserService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @Author xiaohu
@@ -13,33 +18,41 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl implements UserService {
+
+    @Autowired
+    private UserMapper userMapper;
+
     @Override
-    public List<User> listAll() {
-        return null;
+    public PageInfo<User> findAll(Integer page,Integer size) {
+        PageHelper.startPage(page,size);
+        List<User> userList = userMapper.findAll();
+        return new PageInfo<User> (userList);
     }
 
     @Override
     public User findById(String id) {
-        return null;
+        return userMapper.findById(id);
     }
 
     @Override
-    public User update(User user) {
-        return null;
+    public int edit(User user) {
+        return userMapper.edit(user);
     }
 
     @Override
     public int add(User user) {
-        return 0;
+        String id = UUID.randomUUID().toString().replaceAll("-", "");
+        user.setId(id);
+        return userMapper.add(user);
     }
 
     @Override
     public int delete(String id) {
-        return 0;
+        return userMapper.delete(id);
     }
 
     @Override
     public int deleteAll(List<String> ids) {
-        return 0;
+        return userMapper.deleteAll(ids);
     }
 }

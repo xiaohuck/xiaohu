@@ -73,8 +73,8 @@
             <if test="cityName != null">
                 cityName = #{cityName},
             </if>
-            <if test="DepartureTime != null">
-                DepartureTime = #{DepartureTime},
+            <if test="departureTime != null">
+                departureTime = #{departureTime},
             </if>
             <if test="productPrice != null">
                 productPrice = #{productPrice},
@@ -85,8 +85,6 @@
             <if test="productStatus != null">
                 productStatus = #{productStatus},
             </if>
-
-
         </set>
         where id = #{id}
     </update>

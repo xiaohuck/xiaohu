@@ -1,6 +1,7 @@
 package com.bai.xiaohu.service;
 
 import com.bai.xiaohu.pojo.User;
+import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -12,11 +13,11 @@ import java.util.List;
  */
 public interface UserService {
 
-    List<User>  listAll();
+    PageInfo<User> findAll(Integer page,Integer size);
 
     User findById(String id);
 
-    User update(User user);
+    int edit(User user);
 
     int add(User user);
 

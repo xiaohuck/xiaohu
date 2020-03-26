@@ -17,4 +17,16 @@ public class ConfigController {
         ModelAndView mv = new ModelAndView("product-add");
         return mv;
     }
+
+    @RequestMapping("/index")
+    public ModelAndView index() {
+        ModelAndView mv = new ModelAndView("main");
+        return mv;
+    }
+
+    @RequestMapping("/useradd")
+    public ModelAndView useradd(){
+        ModelAndView mv = new ModelAndView("user-add");
+        return mv;
+    }
 }

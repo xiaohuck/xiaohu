@@ -13,7 +13,7 @@ public interface UserMapper {
 
     int add(User user);
 
-    int update(User user);
+    int edit(User user);
 
     int delete(String id);
 
@@ -21,5 +21,5 @@ public interface UserMapper {
 
     User findById(String id);
 
-    List<User> listAll();
+    List<User> findAll();
 }

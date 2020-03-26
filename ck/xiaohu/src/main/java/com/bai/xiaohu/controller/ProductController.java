@@ -21,7 +21,7 @@ public class ProductController {
     private ProductService productService;
 
     @RequestMapping("/findAll")
-    public ModelAndView findAll(@RequestParam(name = "page", required = true, defaultValue = "1") Integer page, @RequestParam(name = "size", required = true, defaultValue = "5") Integer size){
+    public ModelAndView findAll(@RequestParam(name = "page", required = true, defaultValue = "1") Integer page, @RequestParam(name = "size", required = true, defaultValue = "10") Integer size){
         ModelAndView mv = new ModelAndView();
         PageInfo<Product> pageInfo = productService.findAll(page, size);
         mv.addObject("pageInfo",pageInfo);
@@ -34,7 +34,11 @@ public class ProductController {
         productService.add(product);
         return "redirect:findAll";
     }
-
+    @RequestMapping("/edit")
+    public String edit(Product product){
+        productService.edit(product);
+        return "redirect:findAll";
+    }
     @RequestMapping("/delete")
     public String delete(String id){
         productService.delete(id);
@@ -45,7 +49,7 @@ public class ProductController {
         Product product = productService.findById(id);
         ModelAndView mv = new ModelAndView();
         mv.addObject("product",product);
-        mv.setViewName("product-add");
+        mv.setViewName("product-edit");
         return mv;
     }
 }
