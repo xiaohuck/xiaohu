@@ -82,10 +82,10 @@
 				用户管理 <small>全部用户</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="${pageContext.request.contextPath}/index.jsp"><i
+				<li><a href="${pageContext.request.contextPath}/pb/index"><i
 						class="fa fa-dashboard"></i> 首页</a></li>
 				<li><a
-					href="${pageContext.request.contextPath}/user/findAll.do">用户管理</a></li>
+					href="${pageContext.request.contextPath}/user/findAll">用户管理</a></li>
 
 				<li class="active">全部用户</li>
 			</ol>
@@ -108,11 +108,11 @@
 							<div class="pull-left">
 								<div class="form-group form-inline">
 									<div class="btn-group">
-										<button type="button" class="btn btn-default" title="新建" onclick="location.href='${pageContext.request.contextPath}/pages/user-add.jsp'">
+										<button type="button" class="btn btn-default" title="新建" onclick="location.href='${pageContext.request.contextPath}/pb/useradd'">
 											<i class="fa fa-file-o"></i> 新建
 										</button>
 										
-										<button type="button" class="btn btn-default" title="刷新">
+										<button type="button" class="btn btn-default" title="刷新" onclick="location.href='${pageContext.request.contextPath}/user/findAll'">
 											<i class="fa fa-refresh"></i> 刷新
 										</button>
 									</div>
@@ -137,25 +137,25 @@
 										</th>
 										<th class="sorting_asc">ID</th>
 										<th class="sorting_desc">用户名</th>
-										<th class="sorting_asc sorting_asc_disabled">邮箱</th>
+										<th class="sorting_asc sorting_asc_disabled">性别</th>
 										<th class="sorting_desc sorting_desc_disabled">联系电话</th>
-										<th class="sorting">状态</th>
+										<%--<th class="sorting">状态</th>--%>
 										<th class="text-center">操作</th>
 									</tr>
 								</thead>
 								<tbody>
 
-									<c:forEach items="${userList}" var="user">
+									<c:forEach items="${pageInfo.list}" var="user">
 										<tr>
 											<td><input name="ids" type="checkbox"></td>
 											<td>${user.id }</td>
-											<td>${user.username }</td>
-											<td>${user.email }</td>
-											<td>${user.phoneNum }</td>
-											<td>${user.statusStr }</td>											
+											<td>${user.name }</td>
+											<td>${user.sex }</td>
+											<td>${user.tellphone }</td>
+											<%--<td>${user.statusStr }</td>	--%>
 											<td class="text-center">
-												<a href="${pageContext.request.contextPath}/user/findById.do?id=${user.id}" class="btn bg-olive btn-xs">详情</a>
-												<a href="${pageContext.request.contextPath}/user/findUserByIdAndAllRole.do?id=${user.id}" class="btn bg-olive btn-xs">添加角色</a>
+												<a href="${pageContext.request.contextPath}/user/findById?id=${user.id}" class="btn bg-olive btn-xs">编辑</a>
+												<a href="${pageContext.request.contextPath}/user/delete?id=${user.id}" class="btn bg-olive btn-xs">删除</a>
 											</td>
 										</tr>
 									</c:forEach>
@@ -183,7 +183,8 @@
 					<div class="box-footer">
 						<div class="pull-left">
 							<div class="form-group form-inline">
-								总共2 页，共14 条数据。 每页 <select class="form-control">
+								总共${pageInfo.pages}页，共${pageInfo.total} 条数据。 每页
+								<select class="form-control" id="changePageSize" onchange="changePageSize()">
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
@@ -195,18 +196,19 @@
 
 						<div class="box-tools pull-right">
 							<ul class="pagination">
-								<li><a href="#" aria-label="Previous">首页</a></li>
-								<li><a href="#">上一页</a></li>
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#">下一页</a></li>
-								<li><a href="#" aria-label="Next">尾页</a></li>
+								<li>
+									<a href="${pageContext.request.contextPath}/product/findAll?page=1&size=${pageInfo.pageSize}" aria-label="Previous">首页</a>
+								</li>
+								<li><a href="${pageContext.request.contextPath}/product/findAll?page=${pageInfo.pageNum-1}&size=${pageInfo.pageSize}">上一页</a></li>
+								<c:forEach begin="1" end="${pageInfo.pages}" var="pageNum">
+									<li><a href="${pageContext.request.contextPath}/product/findAll?page=${pageNum}&size=${pageInfo.pageSize}">${pageNum}</a></li>
+								</c:forEach>
+								<li><a href="${pageContext.request.contextPath}/product/findAll?page=${pageInfo.pageNum+1}&size=${pageInfo.pageSize}">下一页</a></li>
+								<li>
+									<a href="${pageContext.request.contextPath}/product/findAll?page=${pageInfo.pages}&size=${pageInfo.pageSize}" aria-label="Next">尾页</a>
+								</li>
 							</ul>
 						</div>
-
 					</div>
 					<!-- /.box-footer-->
 
