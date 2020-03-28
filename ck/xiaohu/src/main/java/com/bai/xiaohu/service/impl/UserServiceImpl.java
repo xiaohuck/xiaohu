@@ -55,4 +55,9 @@ public class UserServiceImpl implements UserService {
     public int deleteAll(List<String> ids) {
         return userMapper.deleteAll(ids);
     }
+
+    @Override
+    public User findName(String name) {
+        return userMapper.findName(name);
+    }
 }

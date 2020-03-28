@@ -24,4 +24,6 @@ public interface UserService {
     int delete(String id);
 
     int deleteAll(@Param("ids") List<String> ids);
+
+    User findName(String name);
 }

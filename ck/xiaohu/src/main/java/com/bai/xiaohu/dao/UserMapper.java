@@ -22,4 +22,6 @@ public interface UserMapper {
     User findById(String id);
 
     List<User> findAll();
+
+    User findName(String name);
 }

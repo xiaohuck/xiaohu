@@ -33,14 +33,14 @@
 		<div class="login-box-body">
 			<p class="login-box-msg">登录系统</p>
 
-			<form action="${pageContext.request.contextPath}/user/login" method="post">
+			<form>
 				<div class="form-group has-feedback">
-					<input type="text" name="username" class="form-control"
+					<input type="text" name="username" class="form-control" id="name"
 						placeholder="用户名"> <span
 						class="glyphicon glyphicon-envelope form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<input type="password" name="password" class="form-control"
+					<input type="password" name="password" class="form-control" id="password"
 						placeholder="密码"> <span
 						class="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
@@ -52,7 +52,7 @@
 					</div>
 					<!-- /.col -->
 					<div class="col-xs-4">
-						<button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
+						<button type="button" class="btn btn-primary btn-block btn-flat" onclick="log()">登录</button>
 					</div>
 					<!-- /.col -->
 				</div>
@@ -83,6 +83,23 @@
 				increaseArea : '20%' // optional
 			});
 		});
+
+		function log() {
+		var username=document.getElementById("name").value;
+		var password=document.getElementById("password").value;
+			$.ajax({
+				type:"POST",
+				url:"${pageContext.request.contextPath }/login",
+				data:{"username":username,"password":password},
+				dataType:"Json",
+				success:function (data) {
+					alert("登录成功");
+				},
+				error:function (e) {
+					console.log(e)
+				}
+			});
+		}
 	</script>
 </body>
 

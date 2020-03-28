@@ -85,4 +85,9 @@
     <select id="findById" resultType="com.bai.xiaohu.pojo.User" parameterType="java.lang.String">
         select * from user where id = #{id}
     </select>
+
+    <select id="findName" resultType="com.bai.xiaohu.pojo.User" parameterType="java.lang.String">
+
+        select * from user where name=#{name}
+    </select>
 </mapper>
