@@ -7,6 +7,7 @@ import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -31,6 +32,7 @@ public class CustomRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
 //        System.out.println("-------身份认证方法--------");
+        Session session = SecurityUtils.getSubject().getSession();
         String userName = (String) authenticationToken.getPrincipal();
         String userPassword = new String((char[]) authenticationToken.getCredentials());
         //根据用户名从数据库获取密码
@@ -41,6 +43,7 @@ public class CustomRealm extends AuthorizingRealm {
         } /*else if (!userPassword.equals(password )) {
             throw new AccountException("密码不正确");
         }*/
+        session.setAttribute("user",user);
         return new SimpleAuthenticationInfo(userName, password,getName());
 
     }

@@ -142,6 +142,15 @@
 							</select>
 						</div>
 
+						<div class="col-md-2 title rowHeight2x">图片上传</div>
+						<div class="col-md-10 data rowHeight2x">
+							<div class="avatar-container text-center">
+								<img src="" id="avatarImg" class="avatar-img"/>
+							</div>
+							<div style="padding-top:50px">
+								<button type="button" class="btn btn-sm btn-camera" data-btn-type="upload" ><i class="fa fa-camera">&nbsp;上传/更改头像</i></button>
+							</div>
+						</div>
 						<div class="col-md-2 title rowHeight2x">其他信息</div>
 						<div class="col-md-10 data rowHeight2x">
 							<textarea class="form-control" rows="3"  placeholder="其他信息" name="productDesc"></textarea>

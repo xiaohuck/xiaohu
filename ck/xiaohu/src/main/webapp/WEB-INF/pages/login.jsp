@@ -33,7 +33,7 @@
 		<div class="login-box-body">
 			<p class="login-box-msg">登录系统</p>
 
-			<form>
+			<div>
 				<div class="form-group has-feedback">
 					<input type="text" name="username" class="form-control" id="name"
 						placeholder="用户名"> <span
@@ -56,7 +56,7 @@
 					</div>
 					<!-- /.col -->
 				</div>
-			</form>
+			</div>
 
 			<%--<a href="#">忘记密码</a><br>--%>
 
@@ -88,15 +88,17 @@
 		var username=document.getElementById("name").value;
 		var password=document.getElementById("password").value;
 			$.ajax({
-				type:"POST",
+				type:"get",
+				async: "false",
 				url:"${pageContext.request.contextPath }/login",
 				data:{"username":username,"password":password},
-				dataType:"Json",
-				success:function (data) {
-					alert("登录成功");
-				},
-				error:function (e) {
-					console.log(e)
+				dataType:"json",
+				success:function (result) {
+					if(result.data=='登录成功'){
+						window.location.href="${pageContext.request.contextPath }/pb/index"
+					}else {
+						alert(result.data);
+					}
 				}
 			});
 		}

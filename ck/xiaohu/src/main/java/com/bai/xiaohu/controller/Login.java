@@ -6,6 +6,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -14,9 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
  * @Date 2020/3/20 16:09
  * @Version 1.0
  */
-@Controller
+@RestController
 @RequestMapping("/")
-public class IndexPageController {
+public class Login {
 
 
     @RequestMapping("/")
@@ -52,5 +53,12 @@ public class IndexPageController {
             token.clear();
             return Json.succ().data("登录失败");
         }
+    }
+
+    @RequestMapping("/logout")
+    public ModelAndView logout(){
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return new ModelAndView("login");
     }
 }
